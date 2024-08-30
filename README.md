@@ -1,6 +1,10 @@
 # EXPERIMENT--02-INTEFACING-A-DIGITAL-INPUT-TO-ARM-DEVELOPMENT-BOARD
-## Aim: To Interface a Digital Input  (userpush button  ) to ARM   development board and write a  program to obtain  the data and flash the led  
-## Components required: STM32 CUBE IDE, ARM IOT development board,  STM programmer tool.
+## Aim: 
+
+      To Interface a Digital Input  (userpush button  ) to ARM   development board and write a  program to obtain  the data and flash the led  
+## Components required:
+
+      STM32 CUBE IDE, ARM IOT development board,  STM programmer tool.
 ## Theory 
 The full form of an ARM is an advanced reduced instruction set computer (RISC) machine, and it is a 32-bit processor architecture expanded by ARM holdings. The applications of an ARM processor include several microcontrollers as well as processors. The architecture of an ARM processor was licensed by many corporations for designing ARM processor-based SoC products and CPUs. This allows the corporations to manufacture their products using ARM architecture. Likewise, all main semiconductor companies will make ARM-based SOCs such as Samsung, Atmel, TI etc.
 
@@ -51,13 +55,42 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
-
-
+```
+#include "main.h"
+#include<stdbool.h>
+void push_button();
+bool button_status;
+while (1)
+{
+push_button();
+}
+}
+void push_button()
+{
+button_status=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
+if(button_status==1)
+{
+HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+HAL_Delay(500);
+HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+HAL_Delay(500);
+}
+else
+{
+HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+}
+}
+```
 
 ## Output  :
- 
+
+![EXP 2](https://github.com/user-attachments/assets/b85e6b7c-d3e2-4f88-a1ef-c95a14e98e15)
+
+
 ## layout of the circuit 
- 
+
+ ![Experiment 2](https://github.com/user-attachments/assets/548c45c7-930b-46e5-9bed-96e66a35fad4)
+
  
 ## Result :
 Interfacing a digital Input (Pushbutton ) with ARM microcontroller based IOT development is executed and the results are verified.
